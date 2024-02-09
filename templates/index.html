@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cicada</title>
+    <link rel="stylesheet" href="../static/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Cicada hackers list:</h1>
+      <ul>
+        {% if users %}
+        <ul>
+          {% for user in users %}
+          <li>
+            <a href="https://krductf.ru{{ user.account_url }}"
+              >{{ user.name }}</a
+            >
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>No new hackers yet</p>
+        {% endif %}
+      </ul>
+    </div>
+    <p class="hidden">
+      01101000011101000111010001110000011100110011101000101111001011110110001101101001011000110110000101100100011000010010111001101011011100100110010001110101011000110111010001100110001011100111001001110101001011110011010001100101011000100011010101100100001101100110001001100100001101100011010101100101011001000011000101100010001101000110011000110101011000010110001100110100001100110011000101100010001100000011010001100001001100100110001101100001011000110011000101100110
+    </p>
+    <div class="terminal"></div>
+  </body>
+</html>

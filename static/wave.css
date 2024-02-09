@@ -1,0 +1,14 @@
+:root {
+  animation: wave 5s ease infinite;
+  overflow: hidden;
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}

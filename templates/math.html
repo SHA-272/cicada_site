@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cicada</title>
+    <link rel="stylesheet" href="../static/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Math Challenge</h1>
+      <button id="start" class="start" onclick="runTests()">Start</button>
+
+      <p id="equation" class="equation"></p>
+      <form method="dialog">
+        <input type="text" id="userAnswer" placeholder="Answer" required />
+        <button onclick="checkAnswer()">Submit</button>
+      </form>
+      <p id="result"></p>
+      <p id="total"></p>
+    </div>
+    <div class="terminal"></div>
+
+    <script src="../static/js/math_challenge.js"></script>
+  </body>
+</html>
