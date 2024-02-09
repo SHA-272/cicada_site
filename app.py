@@ -3,11 +3,8 @@ import requests, os, json, random
 
 app = Flask(__name__)
 
-API_KEY = os.environ.get(
-    "CTFD_API_KEY",
-    "ctfd_2c71a65dc478092a47cdebf982b250337ba33b3f15505001fd0dbec10f62b89e",
-)
-API_URL = f"""{os.environ.get("CTFD_URL", "https://krductf.ru")}/api/v1/challenges/{os.environ.get("CTFD_TASK_ID", 87)}/solves"""
+API_KEY = os.environ.get("CTFD_API_KEY")
+API_URL = f"""{os.environ.get("CTFD_URL")}/api/v1/challenges/{os.environ.get("CTFD_TASK_ID")}/solves"""
 
 headers = {
     "Authorization": f"Token {API_KEY}",
