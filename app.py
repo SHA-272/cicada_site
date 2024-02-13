@@ -2,8 +2,9 @@ from flask import Flask, render_template, request, make_response
 import requests, os, json, random
 
 app = Flask(__name__)
-
+# Ключ для работы с API CTFd
 API_KEY = os.environ.get("CTFD_API_KEY")
+# Ссылка на API для работы
 API_URL = f"""{os.environ.get("CTFD_URL")}/api/v1/challenges/{os.environ.get("CTFD_TASK_ID")}/solves"""
 
 headers = {
@@ -11,7 +12,7 @@ headers = {
     "Content-Type": "application/json",
 }
 
-
+# Список неверных ответов
 incorrect_responses = [
     "Congratulations! You must be a genius. Or not.",
     "Nice try! Maybe next time use your brain cells, they're there for a reason.",
@@ -50,7 +51,7 @@ incorrect_responses = [
     "Watch the movie 'Dark Web: Cicada 3301'",
 ]
 
-
+# Список верных ответов
 questions = {
     "secret": "In cryptography, what is the term for a piece of information used to control the operation of an encryption algorithm?",
     "key": "What is the result of applying a cryptographic function to input data, producing a fixed-size string of characters?",
@@ -68,13 +69,14 @@ questions = {
 
 keys = list(questions.keys())
 values = list(questions.values())
-
+# Случайным образом перемешиваем списки ключей и значений для ответов и задач
 random.shuffle(keys)
 random.shuffle(values)
 
 responses = {key.lower(): value for key, value in zip(keys, values)}
 
 
+# Главная страница
 @app.route("/")
 def index():
     r = requests.get(API_URL, headers=headers)
@@ -86,11 +88,13 @@ def index():
         return render_template("index.html")
 
 
+# Страница с флагом
 @app.route("/327a6c4304ad5938eaf0efb6cc3e53dc")
 def flag():
     return render_template("flag.html")
 
 
+# Страница с хранилищем ответов и задач
 @app.route("/4eb5d6bd65ed1b4f5ac431b04a2cac1f", methods=["POST", "GET"])
 def vault():
     user_input = request.form.get("user_input", "").lower()
@@ -101,11 +105,13 @@ def vault():
         return render_template("storage.html")
 
 
+# Страница с математикой
 @app.route("/c98a679441798bdb9c194f9ca471e6cd")
 def math():
     return render_template("math.html")
 
 
+# Страница с куки-файлом и запросом на доступ к файлу из контента страницы
 @app.route("/ee54449478c54a5a5cc4f774e3d4ba34")
 def cookie():
     response = make_response(render_template("cookie.html"))
@@ -116,25 +122,30 @@ def cookie():
     return response
 
 
+# Страница с звездой
 @app.route("/49e3c1983311a275fadc1509148f7ff1")
 def star():
     return render_template("star.html")
 
 
+# Страница с музыкой
 @app.route("/c4d34107574167d0d7df7edf1169012b")
 def music():
     return render_template("moonlight.html")
 
 
+# Страница с QR-кодом
 @app.route("/390f15df565c93c0a56e50b24dc0d5ec")
 def qrcode():
     return render_template("qrcode.html")
 
 
+# Страница с ошибкой 404 и обработчиком ошибок 404 для отображения ошибки 404 на странице задачи
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template("404.html"), 404
 
 
+# Запуск приложения
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0")
